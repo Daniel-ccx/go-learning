@@ -40,3 +40,10 @@ func main() {
 	}
 }
 
+
+结果：
+
+no message received
+sent message hi
+received signal true
+成功: 进程退出代码 0.
