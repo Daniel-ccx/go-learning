@@ -1,0 +1,42 @@
+最近学习go，参考了这个网站，https://gobyexample.com/
+里面的东西带着入门很不错，但是有些代码存在出入，可能是作者有意为之
+
+我把原来的链接放这里：https://gobyexample.com/non-blocking-channel-operations，以下代码是我自己调通后的
+
+// non-blocking-channel-operations
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	messages := make(chan string, 1) //设置channel变量长度 
+	signals := make(chan bool, 1)
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	default:
+		fmt.Println("no message received")
+	}
+
+	msg := "hi"
+	select {
+	case messages <- msg:
+		signals <- true //发送消息成功后得将signals设置true
+		fmt.Println("sent message", msg)
+	default:
+		fmt.Println("no message sent")
+	}
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	case sig := <-signals:
+		fmt.Println("received signal", sig)
+	default:
+		fmt.Println("no activity")
+	}
+}
+
