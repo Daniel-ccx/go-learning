@@ -1,0 +1,55 @@
+without beego,
+how to output the contents on tpl?
+
+Let's try this!
+
+package main
+
+import (
+	"fmt"
+	"html/template"
+	"log"
+	"net/http"
+	"strings"
+)
+
+const (
+	TPL_DIR = "./views/"
+)
+
+type Params struct {
+	Ab string
+}
+
+func saySth(w http.ResponseWriter, r *http.Request) {
+  t := template.Must(template.ParseFiles(TPL_DIR + "list.tpl"))
+  a := r.FormValue("a")
+  log.Printf(a)
+	o := Params{Ab: a}
+	//这里p必须是object
+	t.Execute(w, o)
+  
+}
+
+//list.tpl
+
+<!DOCTYPE HTML>
+<html lang="en">
+	<header>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>
+			go go web
+		</title>
+		<style>
+			
+		</style>
+	</header>
+	<body>
+		<div>
+			<b>{{.Ab}}</b>
+		</div>
+	</body>
+	<footer>
+	</footer>
+</html>
