@@ -1,0 +1,12 @@
+Here we go!
+做一个完整的web项目需要哪些工具 和 驱动（Liberary）
+
+1. IDE
+2. GO Server
+3. gomysql:https://github.com/Philio/GoMySQL,Postgresql:https://github.com/lxn/go-pgsql做数据持久化
+4. go-couchbase:https://github.com/couchbaselabs/go-couchbase,go-redis:https://github.com/alphazero/Go-Redis,gomongo、mgo:labix.org/v2/mgo数据缓冲层
+
+我选择mysql,couchbase,redis结合做一次大数据实验
+
+基础架构设计
+
